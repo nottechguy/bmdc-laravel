@@ -1,0 +1,37 @@
+{
+    "name": "nottechguy/bmdc",
+    "description": "Blade Material Design Components for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luis Antonio",
+            "email": "la.mendoza.1618@gmail.com"
+        }
+    ],
+    "scripts": {},
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0 | ^11.0 | ^12.0",
+        "illuminate/view": "^10.0 | ^11.0 | ^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0 | ^9.0 | ^10.0",
+        "phpunit/phpunit": "^10.1 | ^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BMDC\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BMDC\\BMDCServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

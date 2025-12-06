@@ -1,0 +1,1 @@
+<div class="c_navigation-drawer-main-content" {{ $attributes->merge([]) }}>{{ $slot }}</div>
