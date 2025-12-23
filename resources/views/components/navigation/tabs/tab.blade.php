@@ -19,7 +19,7 @@
         $classList['stacked'] => ($type == 'primary' && ($_label !== null && $_icon !== null)),
         $classList['min_width'] => $_hasAlign, 
         $classList['active'] => $_isSelected]
-    ) {{ $attributes->merge(['aria-selected' => $_isSelected ? 'true' : 'false', 'tabindex' => $_isSelected ? '0' : '-1']) }}>
+    ) {{ $attributes->merge(['aria-selected' => $_isSelected ? 'true' : 'false', 'tabindex' => $_isSelected ? '0' : '-1', 'type' => 'button']) }}>
     <span class="{{ $classList['content'] }}">
         @if ($_icon !== "")
             <x-bmdc-icon class="{{ $classList['icon'] }}" name="{{ $_icon }}" />
