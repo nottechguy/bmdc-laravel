@@ -1,19 +1,3 @@
-@props([
-    'itemType',
-    'text',
-    'secondaryText',
-    'avatar',
-    'image',
-    'thumbnail',
-    'leadingIcon',
-    'trailingIcon',
-    'trailingSupportingText',
-    'href',
-    'disabled',
-    'activated',
-    'nonInteractive'
-])
-
 @aware([
     'type'
 ])
