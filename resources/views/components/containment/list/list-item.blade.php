@@ -22,7 +22,7 @@
     $_hasInnerList = isset($list);
     $_isInnerListCollapsed = $_hasInnerList && !$list->attributes->has('expanded');
 
-    $_isMultipleLineType = $type == 'two_line' || 'three_line';
+    $_isMultipleLineType = in_array($type, ['two_line', 'three_line'], true);
     $_hasSecondaryText = $secondaryText !== null;
 
     $_hasMedia = ($avatar !== NULL || $image !== NULL || $thumbnail || $leadingIcon !== NULL);
