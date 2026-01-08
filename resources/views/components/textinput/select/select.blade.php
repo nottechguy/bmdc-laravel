@@ -1,16 +1,3 @@
-@props([
-    'id' => uniqid('select-'),
-    'label' => 'Label',
-    'type' => 'text',
-    'value' => '',
-    'name',
-    'leadingIcon',
-    'supportingText' => null,
-    'persistentSupportingText' => null,
-    'error' => false,
-    'variant' => 'filled'
-])
-
 @php
     $_id = $id ?? 'select-' . Illuminate\Support\Str::random(8);
     $_label = $label;
