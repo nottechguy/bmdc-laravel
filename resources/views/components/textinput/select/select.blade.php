@@ -35,12 +35,11 @@
 <div class="{{ $classNames() }}" data-variant="{{ $variant }}">
     <input 
         @class($classList['input'])
-        id="{{ $id }}" 
-        type="hidden" 
+        id="{{ $id }}"
         value="{{ $value }}"
         @if($_required) required @endif
         @if($_disabled) disabled @endif
-        {{ $attributes }}
+        {{ $attributes->merge(['type' => 'hidden']) }}
         >
 
     <div class="{{ $classList['anchor'] }}" aria-labelledby="{{ $id }}">
