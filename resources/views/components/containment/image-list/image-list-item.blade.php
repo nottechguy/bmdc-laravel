@@ -7,13 +7,13 @@
     'type'
 ])
 
-<li class="{{ $classNames() }}" {{ $attributes->merge([]) }}>
+<li class="{{ $classNames() }}">
     @if ($type == 'standard')
         <div class="{{ $classList['image_container'] }}">
-            <img class="{{ $classList['image'] }}" src="{{ $src }}" alt="{{ $label }}">
+            <img class="{{ $classList['image'] }}" src="{{ $src }}" alt="{{ $label }}" {{ $attributes->merge([]) }}>
         </div>
     @else
-        <img class="{{ $classList['image'] }}" src="{{ $src }}" alt="{{ $label }}">
+        <img class="{{ $classList['image'] }}" src="{{ $src }}" alt="{{ $label }}" {{ $attributes->merge([]) }}>
     @endif
 
     @if ($label !== null)
