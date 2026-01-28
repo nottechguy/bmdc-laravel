@@ -22,8 +22,9 @@
 <div class="{{ $classNames() }}" data-variant="{{ $variant }}">
     <input 
         @class($classList['input'])
-        id="{{ $id }}"
-        value="{{ $value }}"
+        id="{{ $_id }}"
+        name="{{ $_name }}"
+        value="{{ $_value }}"
         @if($_required) required @endif
         @if($_disabled) disabled @endif
         {{ $attributes->merge(['type' => 'hidden']) }}
