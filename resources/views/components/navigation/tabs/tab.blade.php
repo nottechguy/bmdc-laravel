@@ -11,6 +11,7 @@
 
     $_isSelected = ($_selected === true || $_selected === 'true' || $_selected === '1');
     $_hasAlign = in_array($align, ['start', 'center', 'end']);
+    $_hasIconSlot = isset($mIcon) && $mIcon->isNotEmpty();
 
 @endphp
 
@@ -21,8 +22,12 @@
         $classList['active'] => $_isSelected]
     ) {{ $attributes->merge(['aria-selected' => $_isSelected ? 'true' : 'false', 'tabindex' => $_isSelected ? '0' : '-1', 'type' => 'button']) }}>
     <span class="{{ $classList['content'] }}">
-        @if ($_icon !== "")
-            <x-bmdc-icon class="{{ $classList['icon'] }}" name="{{ $_icon }}" />
+        @if ($_icon !== "" || $_hasIconSlot)
+            @if ($_icon !== "" && !$_hasIconSlot)
+                <x-bmdc-icon class="{{ $classList['icon'] }}" name="{{ $_icon }}" />
+            @elseif($_hasIconSlot && !$_icon)
+                <span class="{{ $classList['icon'] }}">{{ $mIcon }}</span>
+            @endif
         @endif
 
         @if ($_label !== null)
