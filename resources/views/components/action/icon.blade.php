@@ -27,5 +27,9 @@
 <i {{ $attributes->merge([
     'class' => $_className
 ]) }} data-icon="{{ $name }}">
-    {!! $name !!}
+    @if (isset($slot) && $slot->isNotEmpty())
+        {{ $slot }}
+    @else
+        {!! $name !!}
+    @endif
 </i>
