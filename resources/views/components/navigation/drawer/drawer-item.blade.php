@@ -1,3 +1,9 @@
+@php
+
+$_hasIconSlot = isset($mIcon) && $mIcon->isNotEmpty();
+
+@endphp
+
 <a
     @class([
         $classList['container'],
@@ -9,8 +15,12 @@
     @if($disabled) aria-disabled="true" tabindex="-1" @endif
     {{ $attributes }}
 >
-    @if ($icon !== null)
-        <x-bmdc-icon class="{{ $classList['icon'] }}" name="{{ $icon }}" />
+    @if ($_icon !== NULL || $_hasIconSlot)
+        @if ($_icon !== "" && !$_hasIconSlot)
+            <x-bmdc-icon class="{{ $classList['icon'] }}" name="{{ $_icon }}" />
+        @elseif($_hasIconSlot && !$_icon)
+            <span class="{{ $classList['icon'] }}">{{ $mIcon }}</span>
+        @endif
     @endif
 
     <span class="{{ $classList['text'] }}">
