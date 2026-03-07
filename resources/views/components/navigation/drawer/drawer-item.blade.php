@@ -1,5 +1,6 @@
 @php
 
+$_icon = $icon;
 $_hasIconSlot = isset($mIcon) && $mIcon->isNotEmpty();
 
 @endphp
