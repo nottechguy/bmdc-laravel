@@ -1,5 +1,6 @@
 @php
 
+$_icon = $icon;
 $_tag = $href == NULL ? "button" : "a";
 $_hasIconSlot = isset($mIcon) && $mIcon->isNotEmpty();
 
