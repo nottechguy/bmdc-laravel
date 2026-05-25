@@ -1,4 +1,4 @@
-@aware([
+ @aware([
     'type'
 ])
 
@@ -13,6 +13,7 @@
 
 $_hasThumbnail = ($avatar !== NULL || $leadingIcon !== NULL);
 $_isSelected = ($selected === TRUE);
+$_hasIconSlot = isset($mIcon) && $mIcon->isNotEmpty();
 
 @endphp
 
@@ -20,8 +21,12 @@ $_isSelected = ($selected === TRUE);
     @if ($_hasThumbnail)
         @if ($avatar !== NULL)
             <img @class([$classList['icon_leading'], $classList['avatar']]) src="{{ $avatar }}" alt="" />
-        @elseif ($leadingIcon)
-            <x-bmdc-icon @class([$classList['icon'], $classList['icon_leading'], $classList['icon_leading_hidden'] => $_isSelected]) name="{{ $leadingIcon }}" />
+        @elseif ($leadingIcon  !== NULL || $_hasIconSlot)
+            @if ($leadingIcon !== NULL && !$_hasIconSlot)
+                <x-bmdc-icon @class([$classList['icon'], $classList['icon_leading'], $classList['icon_leading_hidden'] => $_isSelected]) name="{{ $leadingIcon }}" />
+            @elseif ($_hasIconSlot && !$leadingIcon)
+                <span @class([$classList['icon'], $classList['icon_leading'], $classList['icon_leading_hidden'] => $_isSelected])>{{ $mIcon }}</span>
+            @endif
         @endif
     @endif
 
