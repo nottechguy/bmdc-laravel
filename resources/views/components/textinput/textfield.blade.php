@@ -56,10 +56,11 @@
     $_hasHelperContent = ($_supportingText || $_withError || $_maxlength);
     
     $_hasActionButton = isset($actionButton);
+    $_hasDateOrTimePicker = (in_array($_type, ["date", "month", "week", "time", "datetime-local"]));
 
 @endphp
 
-<div @class([$classNames(), $classList['with_action_button'] => $_hasActionButton]) data-variant="{{ $variant }}">
+<div @class([$classNames(), $classList['with_action_button'] => $_hasActionButton || $_hasDateOrTimePicker]) data-variant="{{ $variant }}">
     @if($_leadingIcon || $_prefix)
         @if ($_leadingIcon)
             <x-bmdc-icon class="{{ $classList['icon'] }} {{ $classList['leading_icon'] }} {{ $_disabled ? $classList['icon_disabled'] : '' }}" name="{{ $_leadingIcon }}" />
@@ -124,7 +125,7 @@
         </div>
     @endif
 
-    @if($_trailingIcon || $_suffix || $_hasActionButton)
+    @if($_trailingIcon || $_suffix || $_hasActionButton || $_hasDateOrTimePicker)
         @if ($_trailingIcon)
             <x-bmdc-icon class="{{ $classList['icon'] }} {{ $classList['trailing_icon'] }} {{ $_disabled ? $classList['icon_disabled'] : '' }}" name="{{ $_trailingIcon }}" />
         @elseif ($_suffix)
@@ -135,6 +136,18 @@
             ])>{{ $_suffix }}</span>
         @elseif ($_hasActionButton)
             {{ $actionButton }}
+        @elseif ($_hasDateOrTimePicker)
+                <span @class([
+                    $classList['icon'],
+                    $classList['trailing_icon'],
+                    $classList['icon_disabled'] => $_disabled
+                ]) data-datepicker="" tabindex role="button">
+                @if ($_type == 'time' || $type == 'datetime-local')
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-40q0-17 11.5-28.5T280-880q17 0 28.5 11.5T320-840v40h320v-40q0-17 11.5-28.5T680-880q17 0 28.5 11.5T720-840v40h40q33 0 56.5 23.5T840-720v187q0 17-11.5 28.5T800-493q-17 0-28.5-11.5T760-533v-27H200v400h232q17 0 28.5 11.5T472-120q0 17-11.5 28.5T432-80H200Zm378.5-18.5Q520-157 520-240t58.5-141.5Q637-440 720-440t141.5 58.5Q920-323 920-240T861.5-98.5Q803-40 720-40T578.5-98.5ZM740-248v-92q0-8-6-14t-14-6q-8 0-14 6t-6 14v91q0 8 3 15.5t9 13.5l61 61q6 6 14 6t14-6q6-6 6-14t-6-14l-61-61Z"/></svg>
+                @else
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-40q0-17 11.5-28.5T280-880q17 0 28.5 11.5T320-840v40h320v-40q0-17 11.5-28.5T680-880q17 0 28.5 11.5T720-840v40h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Z"/></svg>
+                @endif
+                </span>
         @endif
     @endif
 

@@ -24,14 +24,6 @@
         $_dialogAttributes['aria-labelledby'] = $_id . '-label';
     }
 
-    // Button attributes
-    $_positiveButtonAttributes = [
-        'class' => $classList['button'] . ' ' . $classList['positive_button'],
-        'type'  => $_isFormContent ? 'submit' : 'button',
-        'data-dialog-action' => 'accept',
-        'form' => $_isFormContent ? $form->attributes->get('formID') : ''
-    ];
-
     if ($type === 'confirmation' && $_hasConfirmationList && $confirmationList->attributes->has('defaultSelection')) {
         $_positiveButtonAttributes['disabled'] = 'true';
     }
@@ -67,7 +59,12 @@
                         </x-bmdc-button>
                     @endif
 
-                    <x-bmdc-button {{ $attributes->merge($_positiveButtonAttributes) }}>
+                    <x-bmdc-button
+                        :class="$classList['button'].' '.$classList['positive_button']"
+                        :type="$_isFormContent ? 'submit' : 'button'"
+                        data-dialog-action="accept"
+                        :form="$_isFormContent ? $form->attributes->get('formID') : null"
+                    >
                         {{ $positiveButton }}
                     </x-bmdc-button>
                 </div>
